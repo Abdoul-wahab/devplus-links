@@ -20,16 +20,12 @@
 
 
 <header class="row">
-    @include('includes.header.link')
+    @include('layouts.partials.header')
 </header>
 
 <div id="main" class="mt-5 row">
     @yield('content')
 </div>
-
-<footer class="row">
-    @include('includes.footer.link')
-</footer>
 
 
 <!-- Vendor JS Files -->

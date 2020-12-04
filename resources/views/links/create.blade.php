@@ -1,4 +1,4 @@
-@extends('layouts.link')
+@extends('layouts.app')
 
 @section('title', 'Add Link')
 
@@ -31,7 +31,7 @@
                     {{ session()->get('success') }}
                 </div>
             @endif
-            <form class="p-5" style="color: #757575;"  method="POST" action="{{ route('link.store') }}">
+            <form class="p-5" style="color: #757575;"  method="POST" action="{{ route('links.store') }}">
             @csrf
             <!-- Link -->
                 <div class="form-group mb-4">
