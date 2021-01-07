@@ -6,6 +6,12 @@ use App\Models\Link;
 
 class LinksController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $links = Link::latest()->paginate(Link::NUM_ITEMS_PER_PAGE);
