@@ -45,14 +45,14 @@
             @else
                 <div class="nav-menu">
                     <ul class="navbar-nav mr-auto navbar-expand">
-                        <li class="active nav-item">
-                            <a class="nav-link" href="#">Home</a>
+                        <li class="nav-item @if(Route::current()->getName() === 'home') active @endif">
+                            <a class="nav-link"  href="{{ route('home')}}">Home</a>
+                        </li>
+                        <li class="nav-item @if(Route::current()->getName() === 'links.create') active @endif">
+                            <a class="nav-link" href="{{ route('links.create')}}">Ajouter un lien</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#about">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#services">Services</a>
+                            <a class="nav-link" href="#blog">Blog</a>
                         </li>
                     </ul>
                 </div>
@@ -90,16 +90,6 @@
         </div>
     </header><!-- End Header -->
 
-    @guest
-    <main class="mt-5 py-5">
-        @yield('content')
-    </main>
-    @else
-        <section id="hero" class="d-flex align-items-center justify-content-center">
-            <div class="container" data-aos="fade-up">
-                @yield('content')
-            </div>
-        </section>
-    @endguest
+    @yield('content')
 </body>
 </html>
