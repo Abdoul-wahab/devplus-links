@@ -4,54 +4,29 @@
 
 @section('content')
     <!-- Default form contact -->
-    <div class="container">
-        <div class="card mt-5">
+    <section id="contact" class="contact">
+        <div class="container mt-5 py-5" data-aos="fade-up">
 
-            <h4 class="card-header info-color white-text text-center py-4">
-                <strong>Add Link</strong>
-            </h4>
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+            <form method="post" action="{{ route('links.store') }}" role="form" class="mt-5 php-email-form">
+                @csrf
+                <div class="form-group">
+                    <input type="text" class="form-control" name="title" placeholder="Title" value="{{old('title')}}"  data-rule="minlen:4" data-msg="Entrez le tiltre du lien" />
+                    <div class="validate"></div>
                 </div>
-            @endif
 
-            @if(session()->has('error'))
-                <div class="alert alert-danger">
-                    {{ session()->get('error') }}
-                </div>
-            @endif
-
-            @if(session()->has('success'))
-                <div class="alert alert-success">
-                    {{ session()->get('success') }}
-                </div>
-            @endif
-            <form class="p-5" style="color: #757575;"  method="POST" action="{{ route('links.store') }}">
-            @csrf
-            <!-- Link -->
-                <div class="form-group mb-4">
-                    <input type="text" id="link" name="link" class="form-control" placeholder="Link" value="{{old('link')}}">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="link" placeholder="Link" value="{{old('link')}}" id="link" data-rule="minlen:4" data-msg="Entrez le lien" />
+                    <div class="validate"></div>
                     <small class="text-danger" style="display: none;" id="link_error">Entrez le lien</small>
                 </div>
 
-                <!-- Description -->
-                <div class="form-group mb-4">
-                    <textarea class="form-control rounded-0" id="description" name="description" rows="3" placeholder="Description">{{old('description')}}</textarea>
+                <div class="form-group">
+                    <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description" rows="5" data-rule="required" data-msg="Entrez la description de la source" placeholder="Description">{{old('description')}}</textarea>
+                    <div class="validate"></div>
                     <small class="text-danger" style="display: none;" id="description_error">Entrez la description de la source</small>
-
                 </div>
-
-                <!-- Send button -->
-                <button class="btn btn-info btn-block" type="submit" id="save-link">Save</button>
-
+                <div class="text-center"><button type="submit">Save</button></div>
             </form>
-            <!-- Default form contact -->
         </div>
-
-    </div>
+    </section>
 @endsection

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Link extends Model
 {
     use HasFactory;
-    public const NUM_ITEMS_PER_PAGE = 9;
+    public const NUM_ITEMS_PER_PAGE = 18;
     /**
      * The attributes that are mass assignable.
      *

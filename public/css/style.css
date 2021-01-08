@@ -1522,3 +1522,39 @@ body {
   #footer .footer-top .footer-newsletter form input[type="submit"]:hover {
     background: #ffcd6b;
   }
+/*
+*Pagination style
+*/
+.pagination > li > a
+{
+    background-color: transparent;
+    color: #6C63FF;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+    background-color: #a5a5a7;
+    border-color: #a5a5a7;
+}
+
+.pagination > .active > a
+{
+    color: #444444;
+    background-color: transparent !Important;
+    border: solid 1px #a5a5a7 !Important;
+}
+
+
+.page-link {
+  color: #6C63FF;
+  background-color: transparent !Important;
+}
+
+.pagination > .active
+{
+    background-color: transparent !Important;
+    border: solid 1px #6C63FF;
+}
