@@ -27,6 +27,7 @@ class LinksController extends Controller
     public function store()
     {
         $validatedData = request()->validate([
+            'title' => 'required|string',
             'link' => 'required|string|active_url',
             'description' => 'required|string|min:8',
         ]);
