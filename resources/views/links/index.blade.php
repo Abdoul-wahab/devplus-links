@@ -12,7 +12,18 @@
                 <div class="col-xl-2 col-md-4 col-6 mb-3">
                     <div class="icon-box">
                         <i class="ri-store-line"></i>
-                        <h3><a href="{{ route('links.show', $link->link_key) }}">{{ Str::limit($link->title, 15) }}</a></h3>
+                        <h3>
+                            <a type="button" 
+                                class="my-modal"
+                                data-toggle="modal" 
+                                data-target=".bd-modal-sm"  
+                                data-title="{{ $link->title }}" 
+                                data-link="{{ $link->link }}" 
+                                data-description="{{ $link->description }}"
+                                >
+                                {{ Str::limit($link->title, 15) }}
+                            </a>
+                        </h3>
                     </div>
                 </div>
             @endforeach
@@ -22,6 +33,43 @@
         </div>
     </div>
 </section>
+@endsection
 
+@section('script')
+    <script type="text/javascript"> 
+        $(document).ready(function () {
+        $(".my-modal").click(function () {
+            console.log($(this).data('title'));
+            $('#modal-title-id').html($(this).data('title'));
+            $('#modal-content-id').html($(this).data('description'));
+            //$('#modal-title-id').val($(this).data('title'));
+        });
+});
+    </script>
+@endsection
 
+@section('modal')
+    <div class="modal fade bd-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title-id">
+                        
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="modal-content-id">
+                        
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a type="button" href="#" class="get-started-btn">Go to</a>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
