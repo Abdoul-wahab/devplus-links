@@ -16,7 +16,7 @@
                             <a type="button" 
                                 class="my-modal"
                                 data-toggle="modal" 
-                                data-target=".bd-modal-sm"  
+                                data-target=".bd-modal-md"  
                                 data-title="{{ $link->title }}" 
                                 data-link="{{ $link->link }}" 
                                 data-description="{{ $link->description }}"
@@ -38,19 +38,19 @@
 @section('script')
     <script type="text/javascript"> 
         $(document).ready(function () {
-        $(".my-modal").click(function () {
-            console.log($(this).data('title'));
-            $('#modal-title-id').html($(this).data('title'));
-            $('#modal-content-id').html($(this).data('description'));
-            //$('#modal-title-id').val($(this).data('title'));
+            $(".my-modal").click(function () {
+                console.log($(this).data('title'));
+                $('#modal-title-id').html($(this).data('title'));
+                $('#modal-content-id').html($(this).data('description'));
+                $('#modal-goto-href-id').attr("href", $(this).data('link'));
+            });
         });
-});
     </script>
 @endsection
 
 @section('modal')
-    <div class="modal fade bd-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
+    <div class="modal fade bd-modal-md" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modal-title-id">
@@ -67,7 +67,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <a type="button" href="#" class="get-started-btn">Go to</a>
+                    <a type="button" id="modal-goto-href-id" href="#" class="get-started-btn" target="_blank">Go to</a>
                 </div>
             </div>
         </div>
