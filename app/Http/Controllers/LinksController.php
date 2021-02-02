@@ -38,15 +38,19 @@ class LinksController extends Controller
             'link' => 'required|string|active_url',
             'description' => 'required|string|min:8',
         ]);
-        $link_key = Auth::user()->id . Str::random(9) . substr(strftime("%Y", time()),2);
+        $link_key = auth()->user()->id . Str::uuid() . substr(strftime("%Y", time()),2);
         $validatedData['link_key'] = $link_key;
-        Auth::user()->links()->create($validatedData);
+        auth()->user()->links()->create($validatedData);
         return back()->withSuccess('Saved Successfully !');
     }
 
     public function destroy()
     {
-        request()->user()->delete();
-        return back()->withSuccess('Delete Successfully !');
+        $link = Link::where('link_key', request('link_key'))->first();
+        if( auth()->user()->is( $link->user ) ){
+            $link->delete();
+            return back()->withSuccess('Delete Successfully !');
+        }
+        return back()->with('error', 'Failed to delete that resource !!');
     }
 }

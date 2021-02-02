@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
 
+@section('title', 'Dashboard')
+
 @section('content')
     <div class="row m-5">
         <div class="col-md-12">
@@ -18,39 +20,50 @@
                             <tr>
                                 <th class="text-center">#</th>
                                 <th>Name</th>
-                                <th class="text-center">City</th>
-                                <th class="text-center">Status</th>
+                                <th class="text-center">email</th>
+                                <th class="text-center">links</th>
                                 <th class="text-center">Actions</th>
+                                <th class="text-center">created date</th>
+                                <th class="text-center">last update</th>
                             </tr>
                         </thead>
+
+
                         <tbody>
-                            <tr>
-                                <td class="text-center text-muted">#345</td>
-                                <td>
-                                    <div class="widget-content p-0">
-                                        <div class="widget-content-wrapper">
-                                            <div class="widget-content-left mr-3">
-                                                <div class="widget-content-left">
-                                                    <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg"
-                                                        alt="">
+
+                            @foreach ($users as $user)
+                                <tr>
+                                    <td class="text-center text-muted">#{{ $user->id }}</td>
+                                    <td>
+                                        <div class="widget-content p-0">
+                                            <div class="widget-content-wrapper">
+                                                <div class="widget-content-left mr-3">
+                                                    <div class="widget-content-left">
+                                                        <img width="40" class="rounded-circle"
+                                                            src="assets/images/avatars/4.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="widget-content-left flex2">
+                                                    <div class="widget-heading">{{ $user->name }}</div>
+                                                    <div class="widget-subheading opacity-7">Web Developer</div>
                                                 </div>
                                             </div>
-                                            <div class="widget-content-left flex2">
-                                                <div class="widget-heading">John Doe</div>
-                                                <div class="widget-subheading opacity-7">Web Developer</div>
-                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">Madrid</td>
-                                <td class="text-center">
-                                    <div class="badge badge-warning">Pending</div>
-                                </td>
-                                <td class="text-center">
-                                    <button type="button" id="PopoverCustomT-1"
-                                        class="btn btn-primary btn-sm">Details</button>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td class="text-center">{{ $user->email }}</td>
+                                    <td class="text-center">
+                                        <div class="badge badge-warning">{{ count($user->links) }}</div>
+                                    </td>
+                                    <td class="text-center">
+                                        <button type="button" id="PopoverCustomT-1"
+                                            class="btn btn-primary btn-sm">Details</button>
+                                    </td>
+                                    <td class="text-center">{{ $user->created_at }}</td>
+                                    <td class="text-center">{{ $user->updated_at }}</td>
+                                </tr>
+                            @endforeach
+
+
                             <tr>
                                 <td class="text-center text-muted">#347</td>
                                 <td>
@@ -79,6 +92,7 @@
                                         class="btn btn-primary btn-sm">Details</button>
                                 </td>
                             </tr>
+
                             <tr>
                                 <td class="text-center text-muted">#321</td>
                                 <td>
@@ -107,6 +121,7 @@
                                         class="btn btn-primary btn-sm">Details</button>
                                 </td>
                             </tr>
+
                             <tr>
                                 <td class="text-center text-muted">#55</td>
                                 <td>
@@ -134,6 +149,7 @@
                                         class="btn btn-primary btn-sm">Details</button>
                                 </td>
                             </tr>
+
                         </tbody>
                     </table>
                 </div>
