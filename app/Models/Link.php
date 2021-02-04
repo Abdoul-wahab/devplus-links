@@ -10,7 +10,7 @@ use App\Models\User;
 class Link extends Model
 {
     use HasFactory;
-    public const NUM_ITEMS_PER_PAGE = 18;
+    public const NUM_ITEMS_PER_PAGE = 12;
     /**
      * The attributes that are mass assignable.
      *
