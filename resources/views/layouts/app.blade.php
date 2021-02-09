@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +18,9 @@
 
     <!-- Google Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -29,45 +32,47 @@
     <link href="{{ asset('vendor/aos/aos.css') }}" rel="stylesheet">
 
     <!-- Styles -->
+    @livewireStyles
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     @yield('assets')
 </head>
+
 <body>
     <header id="header" class="fixed-top ">
         <div class="container d-flex align-items-center justify-content-between">
-    
-          <a class="logo" href="{{ url('/') }}"><img src="{{ asset('img/logo.png')}}" alt="" class="img-fluid"></a>
+
+            <a class="logo" href="{{ url('/') }}"><img src="{{ asset('img/logo.png') }}" alt=""
+                    class="img-fluid"></a>
             @guest
-                
+
             @else
-            <nav class="nav-menu d-none d-lg-block">
-                <ul>
-                    <li class="nav-item @if(Route::current()->getName() === 'home') active @endif">
-                        <a class="nav-link"  href="{{ route('home')}}">Home</a>
-                    </li>
-                    <li class="nav-item @if(Route::current()->getName() === 'links.create') active @endif">
-                        <a class="nav-link" href="{{ route('links.create')}}">Add new link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#blog">Blog</a>
-                    </li>
-        
-                </ul>
-            </nav>
+                <nav class="nav-menu d-none d-lg-block">
+                    <ul>
+                        <li class="nav-item @if (Route::current()->getName() === 'home') active @endif">
+                            <a class="nav-link" href="{{ route('home') }}">Home</a>
+                        </li>
+                        <li class="nav-item @if (Route::current()->getName() === 'links.create') active @endif">
+                            <a class="nav-link" href="{{ route('links.create') }}">Add new link</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#blog">Blog</a>
+                        </li>
+
+                    </ul>
+                </nav>
             @endguest
-        
+
             @guest
                 @if (Route::has('login') && Route::current()->getName() != 'login')
                     <a href="{{ route('login') }}" class="get-started-btn scrollto">{{ __('Login') }}</a>
                 @endif
-                
+
                 @if (Route::has('register') && Route::current()->getName() != 'register')
                     <a href="{{ route('register') }}" class="get-started-btn scrollto">{{ __('Register') }}</a>
                 @endif
             @else
-                <a class="get-started-btn scrollto" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
+                <a class="get-started-btn scrollto" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
                     {{ __('Logout') }}
                 </a>
 
@@ -75,12 +80,12 @@
                     @csrf
                 </form>
             @endguest
-        
+
         </div>
     </header><!-- End Header -->
 
     @yield('content')
-    
+
     <!-- Vendor JS Files -->
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -92,12 +97,12 @@
     <script src="{{ asset('vendor/waypoints/jquery.waypoints.min.js') }}"></script>
     <script src="{{ asset('vendor/counterup/counterup.min.js') }}"></script>
     <script src="{{ asset('vendor/aos/aos.js') }}"></script>
-
     <!-- Template Main JS File -->
     <script src="{{ asset('js/main.js') }}"></script>
     @yield('script')
-  
+    @livewireScripts
 </body>
+
 </html>
 
 @yield('modal')

@@ -1,8 +1,8 @@
 <?php
 
 namespace Database\Seeders;
-
 use App\Models\Role;
+use App\Models\Permission;
 use Illuminate\Database\Seeder;
 
 class PermissionSeeder extends Seeder
@@ -15,29 +15,32 @@ class PermissionSeeder extends Seeder
     public function run()
     {
 
-        $createPost = Permission::create([
-            'name' => 'view-post',
-            'display_name' => 'Create Posts', // optional
-            'description' => 'create new blog posts', // optional
+        $readUser = Permission::create([
+            'name' => 'read-user',
+            'display_name' => 'Read users',
+            'description' => 'Read existing user',
         ]);
 
-        $createPost = Permission::create([
-            'name' => 'create-post',
-            'display_name' => 'Create Posts', // optional
-            'description' => 'create new blog posts', // optional
+        $createUser = Permission::create([
+            'name' => 'create-user',
+            'display_name' => 'Create users',
+            'description' => 'create new blog users',
         ]);
             
         $editUser = Permission::create([
             'name' => 'edit-user',
-            'display_name' => 'Edit Users', // optional
-            'description' => 'edit existing users', // optional
+            'display_name' => 'Edit Users',
+            'description' => 'Edit existing users',
         ]);
 
-        $editUser = Permission::create([
-            'name' => 'edit-user',
-            'display_name' => 'Edit Users', // optional
-            'description' => 'edit existing users', // optional
+        $deleteUser = Permission::create([
+            'name' => 'delete-user',
+            'display_name' => 'Delete Users',
+            'description' => 'Delete existing users',
         ]);
+
+        $usersAdmin = Role::where('name', 'super-admin')->first();
+        $usersAdmin->attachPermission([$readUser, $createUser, $editUser, $deleteUser]);
         
     }
 }

@@ -16,26 +16,26 @@ class RoleSeeder extends Seeder
     {
         $superAdmin = Role::create([
             'name' => 'super-admin',
-            'display_name' => 'Super Administrator',
+            'display_name' => 'Website Administrator',
             'description' => 'This user can do everything',
+        ]);
+
+        $admin = Role::create([
+            'name' => 'admin',
+            'display_name' => 'Users Administrator',
+            'description' => 'User is allowed to manage and edit other users',
         ]);
 
         $manager = Role::create([
             'name' => 'manager',
-            'display_name' => 'User Administrator',
-            'description' => 'User is allowed to manage and edit other users',
-        ]);
-
-        $regularUser = Role::create([
-            'name' => 'regular-user',
-            'display_name' => 'Regular User',
-            'description' => 'Regular User',
+            'display_name' => 'Project Administrator',
+            'description' => 'Project is allowed to manage and edit other users',
         ]);
 
         $owner = Role::create([
             'name' => 'owner',
-            'display_name' => 'Project Owner', // optional
-            'description' => 'User is the owner of a given project', // optional
+            'display_name' => 'Project Owner',
+            'description' => 'User is the owner of a given project',
         ]);
     }
 }

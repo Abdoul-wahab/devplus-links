@@ -33,6 +33,7 @@
 
     <link href="{{ asset('dashboard/main.css') }}" rel="stylesheet">
     @yield('assets')
+    @livewireStyles
 </head>
 
 <body>
@@ -123,7 +124,7 @@
                             </div>
                             <div class="widget-content-left  ml-3 header-user-info">
                                 <div class="widget-heading">
-                                    Alina Mclourd
+                                    {{ Auth::user()->name }}
                                 </div>
                                 <div class="widget-subheading">
                                     VP People Manager
@@ -140,7 +141,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="app-main">
         <div class="app-sidebar sidebar-shadow">
@@ -176,9 +176,9 @@
                     </button>
                 </span>
             </div>
-            <div class="scrollbar-sidebar">
+            <div class="scrollbar-sidebar ps ps--active-y">
                 <div class="app-sidebar__inner">
-                    <ul class="vertical-nav-menu">
+                    <ul class="vertical-nav-menu metismenu">
                         <li class="app-sidebar__heading">Dashboards</li>
                         <li>
                             <a href="index.html" class="mm-active">
@@ -373,7 +373,12 @@
         </div>
         <div class="app-main__outer">
 
-            @yield('content')
+            @if (session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session('message') }}
+                </div>
+            @endif
+            @livewire('users')
 
         </div>
     </div>
@@ -390,6 +395,13 @@
     <script src="{{ asset('vendor/counterup/counterup.min.js') }}"></script>
     <script src="{{ asset('vendor/aos/aos.js') }}"></script>
     <script type="text/javascript" src="{{ asset('dashboard/assets/scripts/main.js') }}"></script>
+    @livewireScripts
+    <script type="text/javascript">
+        window.livewire.on('userStore', () => {
+            $('#exampleModal').modal('hide');
+        });
+
+    </script>
 
 
 </body>

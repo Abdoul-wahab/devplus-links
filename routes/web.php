@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LinksController;
 use App\Http\Controllers\UsersController;
-use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
